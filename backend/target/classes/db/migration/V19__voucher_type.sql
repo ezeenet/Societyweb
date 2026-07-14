@@ -1,0 +1,1 @@
+ALTER TABLE expense_vouchers ADD COLUMN voucher_type VARCHAR(20) NOT NULL DEFAULT 'EXPENSE';

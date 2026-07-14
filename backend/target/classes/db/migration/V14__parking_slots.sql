@@ -1,0 +1,11 @@
+CREATE TABLE parking_slots (
+  id          BIGINT AUTO_INCREMENT PRIMARY KEY,
+  slot_number VARCHAR(20)  NOT NULL UNIQUE,
+  slot_type   VARCHAR(20)  NOT NULL DEFAULT 'BOTH',
+  status      VARCHAR(20)  NOT NULL DEFAULT 'VACANT',
+  member_id   BIGINT       NULL,
+  notes       VARCHAR(200) NULL,
+  created_at  DATETIME     DEFAULT CURRENT_TIMESTAMP,
+  updated_at  DATETIME     DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_parking_member FOREIGN KEY (member_id) REFERENCES members(id) ON DELETE SET NULL
+);

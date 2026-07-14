@@ -1,0 +1,1 @@
+ALTER TABLE members ADD COLUMN share_capital DECIMAL(10,2) DEFAULT 0.00;
