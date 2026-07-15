@@ -164,7 +164,7 @@ export default function AccountsPage() {
   const TABS: { id: Tab; label: string; icon: React.ElementType }[] = [
     { id: 'general',  label: 'General Entries', icon: BookOpen  },
     { id: 'receipts', label: 'Receipts',         icon: Printer   },
-    { id: 'ledger',   label: 'Member Ledger',    icon: Users     },
+    { id: 'ledger',   label: 'Member Ledger',     icon: Users     },
     { id: 'cashbook', label: 'Cash Book',        icon: Wallet    },
     { id: 'funds',    label: 'Funds',            icon: BarChart2 },
     { id: 'payments', label: 'All Payments',     icon: TrendingUp },
@@ -215,23 +215,23 @@ export default function AccountsPage() {
               </button>
             </>}
             {/* Member Ledger */}
-           {tab === 'ledger' && ledger && <>
-  <button 
-    onClick={() => {
-      const mappedRows = ledger.rows.map((r: any) => ({ 
-        date: fmtDate(r.date), 
-        description: r.description, 
-        debit: r.debit, 
-        credit: r.credit, 
-        balance: r.balance, 
-        receiptNumber: r.receiptNumber ?? undefined 
-      }));
-      printMemberLedger(mappedRows, ledger.memberName, ledger.flatNumber ?? '');
-    }}
-    className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-600 border border-slate-200 hover:bg-slate-50"
-  >
-    <Printer className="w-4 h-4" /> Print
-  </button>
+            {tab === 'ledger' && ledger && <>
+              <button 
+                onClick={() => {
+                  const mappedRows = ledger.rows.map((r: any) => ({ 
+                    date: fmtDate(r.date), 
+                    description: r.description, 
+                    debit: r.debit, 
+                    credit: r.credit, 
+                    balance: r.balance, 
+                    receiptNumber: r.receiptNumber ?? undefined 
+                  }));
+                  printMemberLedger(mappedRows, ledger.memberName, ledger.flatNumber ?? '');
+                }}
+                className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-600 border border-slate-200 hover:bg-slate-50"
+              >
+                <Printer className="w-4 h-4" /> Print
+              </button>
               <button onClick={() => {
                 const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
                 doc.setFontSize(16); doc.setTextColor(26,35,126);
@@ -242,11 +242,13 @@ export default function AccountsPage() {
                   startY: 30,
                   head: [['Date','Description','Receipt No.','Dr (Billed)','Cr (Paid)','Balance']],
                   body: ledger.rows.map((r: any) => [
-  fmtDate(r.date), r.description, r.receiptNumber ?? '-',
-  r.debit  > 0 ? 'Rs.' + r.debit.toLocaleString('en-IN')  : '-',
-  r.credit > 0 ? 'Rs.' + r.credit.toLocaleString('en-IN') : '-',
-  'Rs.' + Math.abs(r.balance).toLocaleString('en-IN'),
-])
+                    fmtDate(r.date), 
+                    r.description, 
+                    r.receiptNumber ?? '-',
+                    r.debit > 0 ? 'Rs.' + r.debit.toLocaleString('en-IN') : '-',
+                    r.credit > 0 ? 'Rs.' + r.credit.toLocaleString('en-IN') : '-',
+                    'Rs.' + Math.abs(r.balance).toLocaleString('en-IN'),
+                  ]),
                   headStyles: { fillColor: [26,35,126] },
                   alternateRowStyles: { fillColor: [245,245,245] },
                 });
@@ -342,8 +344,8 @@ export default function AccountsPage() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           {[
             { label: 'Opening Balance', value: summary.openingBalance, color: '#64748b', icon: <Wallet className="w-4 h-4" /> },
-            { label: 'Total Income',    value: summary.totalIncome,    color: '#22c55e', icon: <TrendingUp className="w-4 h-4" /> },
-            { label: 'Total Expense',   value: summary.totalExpense,   color: '#ef4444', icon: <TrendingDown className="w-4 h-4" /> },
+            { label: 'Total Income',    value: summary.totalIncome,   color: '#22c55e', icon: <TrendingUp className="w-4 h-4" /> },
+            { label: 'Total Expense',   value: summary.totalExpense,  color: '#ef4444', icon: <TrendingDown className="w-4 h-4" /> },
             { label: 'Balance',         value: summary.closingBalance,
               color: summary.closingBalance >= 0 ? '#3b82f6' : '#ef4444',
               icon: <BookOpen className="w-4 h-4" /> },
@@ -526,7 +528,7 @@ export default function AccountsPage() {
                     ))}
                   </tr></thead>
                   <tbody className="divide-y divide-slate-100">
-                    {ledger.rows.map((row, i) => (
+                    {ledger.rows.map((row: any, i: number) => (
                       <tr key={i} className={`transition-colors
                         ${row.type === 'BILL' ? 'hover:bg-red-50/30' : 'hover:bg-green-50/30'}`}>
                         <td className="px-4 py-3 text-xs text-slate-500 whitespace-nowrap">{fmtDate(row.date)}</td>
@@ -564,7 +566,7 @@ export default function AccountsPage() {
         </div>
       )}
 
-      {/* ── TAB 4: Cash Book (simplified — full version via Reports) ─────── */}
+      {/* ── TAB 4: Cash Book ────────────────────────────────────────────────── */}
       {tab === 'cashbook' && (
         <div>
           <div className="mb-4 p-3 bg-blue-50 border border-blue-100 rounded-xl">
@@ -915,7 +917,7 @@ export default function AccountsPage() {
                 <p className="text-sm font-semibold text-slate-700">
                   Transactions — {bankAccounts.find(a => a.id === selBankAccount)?.accountName}
                 </p>
-                <button onClick={() => { setTxnForm({ transactionType: 'DEPOSIT', amount: '', description: '', transactionDate: new Date().toISOString().split('T')[0], reference: '', contraEntry: false }); setTxnModal(true); }}
+                <button onClick={() => { setTxnForm({ transactionType: 'DEPOSIT', amount: '', description: '', transactionDate: new Date().toISOString().split('T')[0], reference: '' }); setTxnModal(true); }}
                   className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-white"
                   style={{ background: 'linear-gradient(135deg,#22c55e,#16a34a)' }}>
                   <Plus className="w-4 h-4" /> Add Transaction
@@ -1062,23 +1064,18 @@ export default function AccountsPage() {
                       value={txnForm.reference} onChange={e => setTxnForm(f => ({ ...f, reference: e.target.value }))} />
                   </div>
 
-                  {/* Contra Entry Toggle */}
-                  <div className={`p-3 rounded-xl border transition-all ${txnForm.contraEntry ? 'bg-amber-50 border-amber-200' : 'bg-slate-50 border-slate-200'}`}>
-                    <label className="flex items-center gap-3 cursor-pointer">
-                      <input type="checkbox" checked={txnForm.contraEntry}
-                        onChange={e => setTxnForm(f => ({ ...f, contraEntry: e.target.checked }))}
-                        className="w-4 h-4 rounded" />
-                      <div>
-                        <p className="text-sm font-medium text-slate-700">
-                          {txnForm.transactionType === 'WITHDRAWAL' ? 'Transfer to Cash Book' : 'Transfer from Cash Book'}
-                        </p>
-                        <p className="text-xs text-slate-500 mt-0.5">
-                          {txnForm.transactionType === 'WITHDRAWAL'
-                            ? 'Bank कमी होईल + Cash Book मध्ये entry येईल (Contra)'
-                            : 'Bank वाढेल + Cash Book मधून entry जाईल (Contra)'}
-                        </p>
-                      </div>
-                    </label>
+                  {/* Contra Entry Toggle Placeholder removed for standard handling */}
+                  <div className="p-3 rounded-xl border bg-slate-50 border-slate-200">
+                    <div>
+                      <p className="text-sm font-medium text-slate-700">
+                        {txnForm.transactionType === 'WITHDRAWAL' ? 'Transfer to Cash Book' : 'Transfer from Cash Book'}
+                      </p>
+                      <p className="text-xs text-slate-500 mt-0.5">
+                        {txnForm.transactionType === 'WITHDRAWAL'
+                          ? 'Bank कमी होईल + Cash Book मध्ये entry येईल (Contra)'
+                          : 'Bank वाढेल + Cash Book मधून entry जाईल (Contra)'}
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <div className="flex gap-3 mt-6">
@@ -1096,7 +1093,7 @@ export default function AccountsPage() {
                         description: txnForm.description || undefined,
                         transactionDate: txnForm.transactionDate || undefined,
                         reference: txnForm.reference || undefined,
-                        contraEntry: txnForm.contraEntry,
+                        contraEntry: false,
                       }, { onSuccess: () => setTxnModal(false) });
                     }}
                     disabled={!txnForm.amount || addBankTransaction.isPending}
