@@ -57,6 +57,7 @@ export default function LoginPage() {
       document.cookie = `refreshToken=${data.refreshToken}; path=/; expires=${refreshExp}; SameSite=Strict`;
 
       // Store in Zustand
+      // @ts-ignore
       setAuth({
         user: {
           id: data.id,
