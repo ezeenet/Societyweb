@@ -215,7 +215,7 @@ export default function AccountsPage() {
               </button>
             </>}
             {/* Member Ledger */}
-            {tab === 'ledger' && ledger && <>
+           {tab === 'ledger' && ledger && <>
   <button 
     onClick={() => {
       const mappedRows = ledger.rows.map((r: any) => ({ 
@@ -226,7 +226,7 @@ export default function AccountsPage() {
         balance: r.balance, 
         receiptNumber: r.receiptNumber ?? undefined 
       }));
-      printMemberLedger(mappedRows, ledger.memberName, ledger.flatNumber);
+      printMemberLedger(mappedRows, ledger.memberName, ledger.flatNumber ?? '');
     }}
     className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-600 border border-slate-200 hover:bg-slate-50"
   >
