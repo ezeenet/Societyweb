@@ -218,8 +218,7 @@ export default function AccountsPage() {
             {tab === 'ledger' && ledger && <>
   <button 
     onClick={() => {
-      // @ts-ignore
-      const mappedRows = ledger.rows.map(r => ({ 
+      const mappedRows = ledger.rows.map((r: any) => ({ 
         date: fmtDate(r.date), 
         description: r.description, 
         debit: r.debit, 
