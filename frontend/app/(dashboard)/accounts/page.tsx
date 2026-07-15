@@ -216,10 +216,23 @@ export default function AccountsPage() {
             </>}
             {/* Member Ledger */}
             {tab === 'ledger' && ledger && <>
-                        <button onClick={() => printMemberLedger(ledger.rows.map(r => ({ date: fmtDate(r.date), description: r.description, debit: r.debit, credit: r.credit, balance: r.balance,    // @ts-ignore receiptNumber: r.receiptNumber ?? undefined })), ledger.memberName, ledger.flatNumber)}
-                className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-600 border border-slate-200 hover:bg-slate-50">
-                <Printer className="w-4 h-4" /> Print
-              </button>
+  <button 
+    onClick={() => {
+      // @ts-ignore
+      const mappedRows = ledger.rows.map(r => ({ 
+        date: fmtDate(r.date), 
+        description: r.description, 
+        debit: r.debit, 
+        credit: r.credit, 
+        balance: r.balance, 
+        receiptNumber: r.receiptNumber ?? undefined 
+      }));
+      printMemberLedger(mappedRows, ledger.memberName, ledger.flatNumber);
+    }}
+    className="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-600 border border-slate-200 hover:bg-slate-50"
+  >
+    <Printer className="w-4 h-4" /> Print
+  </button>
               <button onClick={() => {
                 const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
                 doc.setFontSize(16); doc.setTextColor(26,35,126);
