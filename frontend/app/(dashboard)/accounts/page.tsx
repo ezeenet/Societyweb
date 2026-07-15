@@ -241,12 +241,12 @@ export default function AccountsPage() {
                 autoTable(doc, {
                   startY: 30,
                   head: [['Date','Description','Receipt No.','Dr (Billed)','Cr (Paid)','Balance']],
-                  body: ledger.rows.map(r => [
-                    fmtDate(r.date), r.description, r.receiptNumber ?? '-',
-                    r.debit  > 0 ? 'Rs.' + r.debit.toLocaleString('en-IN')  : '-',
-                    r.credit > 0 ? 'Rs.' + r.credit.toLocaleString('en-IN') : '-',
-                    'Rs.' + Math.abs(r.balance).toLocaleString('en-IN'),
-                  ]),
+                  body: ledger.rows.map((r: any) => [
+  fmtDate(r.date), r.description, r.receiptNumber ?? '-',
+  r.debit  > 0 ? 'Rs.' + r.debit.toLocaleString('en-IN')  : '-',
+  r.credit > 0 ? 'Rs.' + r.credit.toLocaleString('en-IN') : '-',
+  'Rs.' + Math.abs(r.balance).toLocaleString('en-IN'),
+])
                   headStyles: { fillColor: [26,35,126] },
                   alternateRowStyles: { fillColor: [245,245,245] },
                 });
