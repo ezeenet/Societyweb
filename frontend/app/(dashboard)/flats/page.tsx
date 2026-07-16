@@ -101,14 +101,14 @@ export default function FlatsPage() {
             {/* Print Button - Filtered flats cha data print sathi */}
             {activeTab === 'flats' && (
               <button 
-                onClick={() => printFlats(filteredFlats.map(f => ({
-                  wing: f.wingName,
-                  flatNo: f.flatNumber,
-                  floor: f.floorNumber ?? '—',
-                  type: f.flatType ? FLAT_TYPE_LABELS[f.flatType] : '—',
-                  area: f.areaSqft ? `${f.areaSqft} sq.ft` : '—',
-                  status: f.status
-                })))}
+               onClick={() => printFlats(filteredFlats.map(f => ({
+  wing: f.wingName,
+  flatNo: f.flatNumber,
+  floor: f.floorNumber ?? '—',
+  type: f.flatType,
+  area: f.areaSqFt ? f.areaSqFt + ' sqft' : '—',
+  status: f.status
+})))}
                 className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium text-slate-600 border border-slate-200 hover:bg-slate-50 transition-colors"
               >
                 <Printer className="w-4 h-4" /> Print
