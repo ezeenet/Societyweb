@@ -1325,10 +1325,10 @@ export default function AccountsPage() {
                   <button
                     onClick={() => {
                       if (!vForm.expenseFor.trim() || vForm.items.some(it => !it.itemName.trim())) return;
-                      createVoucher.mutate({
-  expenseFor: vForm.expenseFor,
-  vendorName: vForm.vendorName || undefined,
-  vendorId: vForm.vendorId ? Number(vForm.vendorId) : undefined,
+                      
+                      const voucherPayload: any = {
+                        expenseFor: vForm.expenseFor,
+                        vendorName: vForm.vendorName || undefined,
                         vendorId: vForm.vendorId ? Number(vForm.vendorId) : undefined,
                         voucherDate: vForm.voucherDate,
                         paymentMode: vForm.paymentMode,
@@ -1339,7 +1339,9 @@ export default function AccountsPage() {
                           quantity: Number(it.quantity) || 1,
                           pricePerUnit: Number(it.pricePerUnit) || 0,
                         })),
-                      }, { onSuccess: () => setVoucherModal(false) });
+                      };
+
+                      createVoucher.mutate(voucherPayload, { onSuccess: () => setVoucherModal(false) });
                     }}
                     disabled={!vForm.expenseFor.trim() || createVoucher.isPending}
                     className="flex-1 py-2.5 rounded-xl text-sm font-medium text-white disabled:opacity-50"
