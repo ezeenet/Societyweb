@@ -29,14 +29,14 @@ interface KpiConfig {
 }
 
 const KPI_CARDS: KpiConfig[] = [
-  { key: 'totalMembers',   label: 'Total Members',   icon: Users,         color: '#4f7fff', bg: '#eff6ff', format: 'number',   href: '/members',     group: 'property'    },
-  { key: 'totalFlats',     label: 'Total Flats',     icon: Building2,     color: '#8b5cf6', bg: '#f5f3ff', format: 'number',   href: '/flats',       group: 'property'    },
-  { key: 'occupiedFlats',  label: 'Occupied',        icon: HomeIcon,      color: '#22c55e', bg: '#f0fdf4', format: 'number',   href: '/flats',       group: 'property'    },
-  { key: 'vacantFlats',    label: 'Vacant',          icon: CheckCircle2,  color: '#64748b', bg: '#f1f5f9', format: 'number',   href: '/flats',       group: 'property'    },
+  { key: 'totalMembers',   label: 'Total Members',   icon: Users,        color: '#4f7fff', bg: '#eff6ff', format: 'number',   href: '/members',   group: 'property'    },
+  { key: 'totalFlats',     label: 'Total Flats',     icon: Building2,     color: '#8b5cf6', bg: '#f5f3ff', format: 'number',   href: '/flats',      group: 'property'    },
+  { key: 'occupiedFlats',  label: 'Occupied',        icon: HomeIcon,      color: '#22c55e', bg: '#f0fdf4', format: 'number',   href: '/flats',      group: 'property'    },
+  { key: 'vacantFlats',    label: 'Vacant',          icon: CheckCircle2,  color: '#64748b', bg: '#f1f5f9', format: 'number',   href: '/flats',      group: 'property'    },
   { key: 'pendingBills',   label: 'Pending Bills',   icon: Receipt,       color: '#f59e0b', bg: '#fffbeb', format: 'number',   href: '/maintenance', group: 'financial'   },
-  { key: 'totalCollected', label: 'Collected',       icon: Wallet,        color: '#22c55e', bg: '#f0fdf4', format: 'currency', href: '/accounts',    group: 'financial'   },
-  { key: 'totalIncome',    label: 'Total Income',    icon: TrendingUp,    color: '#3b82f6', bg: '#eff6ff', format: 'currency', href: '/accounts',    group: 'financial'   },
-  { key: 'totalExpense',   label: 'Total Expense',   icon: TrendingDown,  color: '#ef4444', bg: '#fef2f2', format: 'currency', href: '/accounts',    group: 'financial'   },
+  { key: 'totalCollected', label: 'Collected',       icon: Wallet,        color: '#22c55e', bg: '#f0fdf4', format: 'currency', href: '/accounts',     group: 'financial'   },
+  { key: 'totalIncome',    label: 'Total Income',    icon: TrendingUp,    color: '#3b82f6', bg: '#eff6ff', format: 'currency', href: '/accounts',     group: 'financial'   },
+  { key: 'totalExpense',   label: 'Total Expense',   icon: TrendingDown,  color: '#ef4444', bg: '#fef2f2', format: 'currency', href: '/accounts',     group: 'financial'   },
   { key: 'openComplaints', label: 'Open Complaints', icon: MessageSquare, color: '#ef4444', bg: '#fef2f2', format: 'number',   href: '/complaints',  group: 'operations'  },
   { key: 'visitorsToday',  label: 'Visitors Today',  icon: UserCheck,     color: '#06b6d4', bg: '#ecfeff', format: 'number',   href: '/visitors',    group: 'operations'  },
   { key: 'activeNotices',  label: 'Active Notices',  icon: Bell,          color: '#f59e0b', bg: '#fffbeb', format: 'number',   href: '/notices',     group: 'operations'  },
@@ -44,7 +44,7 @@ const KPI_CARDS: KpiConfig[] = [
 ];
 
 const GROUP_LABELS = {
-  property:   'Property',
+  property:  'Property',
   financial:  'Financial',
   operations: 'Operations',
 };
