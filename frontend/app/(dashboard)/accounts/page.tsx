@@ -441,7 +441,7 @@ export default function AccountsPage() {
               ))}
             </tr></thead>
             <tbody className="divide-y divide-slate-100">
-              {approvedPayments.map(p: any) => (
+              {approvedPayments.map((p: any) => (
                 <tr key={p.id} className="hover:bg-slate-50 transition-colors">
                   <td className="px-4 py-3 font-mono text-xs text-blue-600">{p.receiptNumber}</td>
                   <td className="px-4 py-3 font-medium text-slate-800">{p.memberName}</td>
