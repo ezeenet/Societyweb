@@ -1093,8 +1093,7 @@ export default function AccountsPage() {
                         description: txnForm.description || undefined,
                         transactionDate: txnForm.transactionDate || undefined,
                         reference: txnForm.reference || undefined,
-                        contraEntry: false,
-                      }, { onSuccess: () => setTxnModal(false) });
+                        }, { onSuccess: () => setTxnModal(false) });
                     }}
                     disabled={!txnForm.amount || addBankTransaction.isPending}
                     className="flex-1 py-2.5 rounded-xl text-sm font-medium text-white disabled:opacity-50"
