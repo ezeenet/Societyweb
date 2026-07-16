@@ -1148,8 +1148,8 @@ export default function AccountsPage() {
               </tr></thead>
               <tbody className="divide-y divide-slate-100">
                 {vouchers
-                  .filter(v => !(vForm as any)._filter || (vForm as any)._filter === 'ALL' || v.voucherType === (vForm as any)._filter)
-                  .map(v => (
+                  .filter((v: any) => !(vForm as any)._filter || (vForm as any)._filter === 'ALL' || v.voucherType === (vForm as any)._filter)
+                  .map((v: any) => (
                   <tr key={v.id} className="hover:bg-slate-50 transition-colors">
                     <td className="px-4 py-3 font-mono text-xs text-blue-600 font-medium">{v.voucherNumber}</td>
                     <td className="px-4 py-3">
@@ -1157,7 +1157,7 @@ export default function AccountsPage() {
                         ${v.voucherType === 'EXPENSE' ? 'bg-red-50 text-red-600' :
                           v.voucherType === 'PAYMENT' ? 'bg-amber-50 text-amber-700' :
                           'bg-green-50 text-green-700'}`}>
-                        {v.voucherType}
+                        {v.voucherType ?? 'EXPENSE'}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-xs text-slate-500 whitespace-nowrap">{fmtDate(v.voucherDate)}</td>
