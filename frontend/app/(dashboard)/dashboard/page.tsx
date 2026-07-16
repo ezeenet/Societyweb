@@ -125,7 +125,7 @@ export default function DashboardPage() {
     if (key === 'visitorsToday' && isMember && myVisitorsCount !== null) return myVisitorsCount;
     if (key === 'openComplaints' && isMember && myOpenComplaints !== null) return myOpenComplaints;
     if (key === 'pendingBills' && isMember && myPendingBills !== null) return myPendingBills;
-    return (stats as any)[key] ?? 0;
+    return (stats as Record<string, number>)[key] ?? 0;
   };
 
   // Role-based hidden keys
