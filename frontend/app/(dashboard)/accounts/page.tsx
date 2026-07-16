@@ -1326,9 +1326,9 @@ export default function AccountsPage() {
                     onClick={() => {
                       if (!vForm.expenseFor.trim() || vForm.items.some(it => !it.itemName.trim())) return;
                       createVoucher.mutate({
-                        voucherType: vForm.voucherType,
-                        expenseFor: vForm.expenseFor,
-                        vendorName: vForm.vendorName || undefined,
+  expenseFor: vForm.expenseFor,
+  vendorName: vForm.vendorName || undefined,
+  vendorId: vForm.vendorId ? Number(vForm.vendorId) : undefined,
                         vendorId: vForm.vendorId ? Number(vForm.vendorId) : undefined,
                         voucherDate: vForm.voucherDate,
                         paymentMode: vForm.paymentMode,
